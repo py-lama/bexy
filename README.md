@@ -63,6 +63,112 @@ pybox
 ```
 Choose "Uruchom kod z pliku .py lub .md" and follow the prompts to run any script or markdown code blocks, locally or in Docker.
 
+
+
+## Overview
+PyBox is a sandbox system for safely running Python code from scripts or markdown, with support for dependency management and Docker isolation.
+
+---
+
+## Mermaid Diagram – Main Flow
+
+```mermaid
+flowchart TD
+    A[User Input: .py/.md file] --> B{File Type?}
+    B -- .py --> C[Read Python file]
+    B -- .md --> D[Extract python code blocks]
+    C --> E[Choose Sandbox Type]
+    D --> E
+    E -- PythonSandbox --> F[Run code locally]
+    E -- DockerSandbox --> G[Run code in Docker]
+    F --> H[Collect Results]
+    G --> H
+    H --> I[Display Output]
+```
+
+---
+
+## ASCII Diagram – Component Overview
+
+```
++-------------------+
+|    User/CLI/Menu  |
++--------+----------+
+         |
+         v
++--------+----------+
+| pybox_run / menu   |
++--------+----------+
+         |
+         v
++-------------------+
+| File Handler      |
+| (.py/.md parser)  |
++--------+----------+
+         |
+         v
++-------------------+
+|  Sandbox Layer    |
+| PythonSandbox     |
+| DockerSandbox     |
++--------+----------+
+         |
+         v
++-------------------+
+|  Output/Reporter  |
++-------------------+
+```
+
+---
+
+## Flow Description
+1. **User** selects file via CLI or menu.
+2. **File Handler** detects file type:
+   - `.py`: reads the script.
+   - `.md`: extracts all ```python code blocks.
+3. **Sandbox Layer** runs code using `PythonSandbox` (local) or `DockerSandbox` (container).
+4. **Output/Reporter** collects and displays results for each code block/script.
+
+---
+
+## Example Sequence (Markdown)
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant P as pybox_run
+    participant F as FileHandler
+    participant S as Sandbox
+    participant O as Output
+    U->>P: Provide README.md
+    P->>F: Parse .md, extract python blocks
+    F->>S: Send code block to sandbox
+    S->>O: Return execution result
+    O->>U: Show output
+    loop for each block
+        F->>S: Next block
+        S->>O: Result
+        O->>U: Output
+    end
+```
+```
+
+---
+
+## Key Components
+- **pybox_run**: CLI/utility for running code from files
+- **examples.py**: Interactive menu, now integrates file execution
+- **PythonSandbox/DockerSandbox**: Safe code execution layers
+- **DependencyManager**: Handles required packages
+- **Markdown Parser**: Extracts code blocks from `.md`
+
+---
+
+## Extending
+- Add support for more file types (e.g., Jupyter).
+- Enhance reporting (HTML, JSON output).
+- Add block selection for markdown.
+
 ### Example
 
 Suppose you have a Markdown file with:
