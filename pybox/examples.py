@@ -100,7 +100,7 @@ print(f'Plik {temp_path} zostau0142 usuniu0119ty.')
 
 def example_code_analyzer():
     """Przyku0142ad uu017cycia CodeAnalyzer."""
-    from sandbox.code_analyzer import CodeAnalyzer
+    from pybox.code_analyzer import CodeAnalyzer
     
     analyzer = CodeAnalyzer()
     
@@ -130,7 +130,7 @@ def example_code_analyzer():
 
 def example_dependency_manager():
     """Przyku0142ad uu017cycia DependencyManager."""
-    from sandbox.dependency_manager import DependencyManager
+    from pybox.dependency_manager import DependencyManager
     
     dependency_manager = DependencyManager()
     
@@ -153,7 +153,7 @@ def example_dependency_manager():
 
 def example_python_sandbox():
     """Przyku0142ad uu017cycia PythonSandbox."""
-    from sandbox.python_sandbox import PythonSandbox
+    from pybox.python_sandbox import PythonSandbox
     
     sandbox = PythonSandbox()
     
@@ -181,7 +181,7 @@ def example_python_sandbox():
 
 def example_docker_sandbox():
     """Przyku0142ad uu017cycia DockerSandbox."""
-    from sandbox.docker_sandbox import DockerSandbox
+    from pybox.docker_sandbox import DockerSandbox
     
     # Sprawdu017a, czy Docker jest zainstalowany
     import subprocess
@@ -209,7 +209,7 @@ def example_docker_sandbox():
 
 def example_sandbox_manager():
     """Przyku0142ad uu017cycia SandboxManager."""
-    from sandbox.sandbox_manager import SandboxManager
+    from pybox.sandbox_manager import SandboxManager
     
     # Utworzenie SandboxManager
     manager = SandboxManager(use_docker=False)
@@ -241,7 +241,7 @@ def example_sandbox_manager():
 
 def example_utils():
     """Przyku0142ad uu017cycia funkcji pomocniczych."""
-    from sandbox.utils import get_system_info, format_execution_result, create_temp_file
+    from pybox.utils import get_system_info, format_execution_result, create_temp_file
     
     print("\n=== Przyku0142ad uu017cycia funkcji pomocniczych ===\n")
     
