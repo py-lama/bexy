@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Przyku0142ady uu017cycia pakietu sandbox.
+Przykłady użycia pakietu sandbox.
 
-Ten moduu0142 zawiera przyku0142ady uu017cycia ru00f3u017cnych komponentu00f3w pakietu sandbox.
+Ten moduł zawiera przykłady użycia różnych komponentów pakietu sandbox.
 """
 
 import os
 import sys
 import logging
+import questionary
+from pybox.pybox_run import extract_python_blocks_from_md, run_code
 
 # Konfiguracja loggera
 logging.basicConfig(
@@ -18,7 +20,7 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-# Przyku0142adowe kody Python do testu00f3w
+# Przykładowe kody Python do testów
 EXAMPLE_CODE_SIMPLE = """
 import os
 import sys
@@ -27,9 +29,9 @@ import math
 print('Informacje o systemie:')
 print(f'System operacyjny: {os.name}')
 print(f'Wersja Pythona: {sys.version}')
-print(f'Katalog bieu017cu0105cy: {os.getcwd()}')
+print(f'Katalog bieżący: {os.getcwd()}')
 
-# Przyku0142ad obliczeu0144 matematycznych
+# Przykład obliczeń matematycznych
 print('\nObliczenia matematyczne:')
 print(f'Pi: {math.pi}')
 print(f'Pierwiastek z 16: {math.sqrt(16)}')
@@ -40,14 +42,14 @@ EXAMPLE_CODE_NUMPY = """
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Przyku0142ad uu017cycia NumPy
+# Przykład użycia NumPy
 arr = np.array([1, 2, 3, 4, 5])
 print(f'Tablica NumPy: {arr}')
-print(f'u015arednia: {np.mean(arr)}')
+print(f'Średnia: {np.mean(arr)}')
 print(f'Suma: {np.sum(arr)}')
 print(f'Odchylenie standardowe: {np.std(arr)}')
 
-# Przyku0142ad generowania wykresu
+# Przykład generowania wykresu
 x = np.linspace(0, 10, 100)
 y = np.sin(x)
 plt.figure(figsize=(8, 4))
@@ -61,13 +63,13 @@ print('Wykres zapisany do pliku sinus.png')
 """
 
 EXAMPLE_CODE_ERROR = """
-print('Ten kod zawiera bu0142u0105d sku0142adni')
+print('Ten kod zawiera błąd składni')
 if True
     print('Brakuje dwukropka po if')
 """
 
 EXAMPLE_CODE_RUNTIME_ERROR = """
-print('Ten kod zawiera bu0142u0105d wykonania')
+print('Ten kod zawiera błąd wykonania')
 x = 10 / 0  # Dzielenie przez zero
 print('Ta linia nie zostanie wykonana')
 """
@@ -84,7 +86,7 @@ temp_file.close()
 # Zapisanie danych do pliku
 with open(temp_path, 'w') as f:
     f.write('Hello, world!\n')
-    f.write('To jest przyku0142ad operacji na plikach.')
+    f.write('To jest przykład operacji na plikach.')
 
 # Odczytanie danych z pliku
 print(f'Odczytywanie pliku: {temp_path}')
@@ -92,98 +94,98 @@ with open(temp_path, 'r') as f:
     content = f.read()
     print(content)
 
-# Usuniu0119cie pliku
+# Usunięcie pliku
 os.unlink(temp_path)
-print(f'Plik {temp_path} zostau0142 usuniu0119ty.')
+print(f'Plik {temp_path} został usunięty.')
 """
 
 
 def example_code_analyzer():
-    """Przyku0142ad uu017cycia CodeAnalyzer."""
+    """Przykład użycia CodeAnalyzer."""
     from pybox.code_analyzer import CodeAnalyzer
     
     analyzer = CodeAnalyzer()
     
-    print("\n=== Przyku0142ad uu017cycia CodeAnalyzer ===\n")
+    print("\n=== Przykład użycia CodeAnalyzer ===\n")
     
     # Analiza kodu z importami standardowymi
     print("Analiza kodu z importami standardowymi:")
     result = analyzer.analyze_code(EXAMPLE_CODE_SIMPLE)
     print(f"Standardowe biblioteki: {result['standard_library']}")
-    print(f"Zewnu0119trzne biblioteki: {result['third_party']}")
+    print(f"Zewnętrzne biblioteki: {result['third_party']}")
     print(f"Nieznane biblioteki: {result['unknown']}")
     print(f"Wymagane pakiety: {result['required_packages']}")
     
-    # Analiza kodu z importami zewnu0119trznymi
-    print("\nAnaliza kodu z importami zewnu0119trznymi:")
+    # Analiza kodu z importami zewnętrznymi
+    print("\nAnaliza kodu z importami zewnętrznymi:")
     result = analyzer.analyze_code(EXAMPLE_CODE_NUMPY)
     print(f"Standardowe biblioteki: {result['standard_library']}")
-    print(f"Zewnu0119trzne biblioteki: {result['third_party']}")
+    print(f"Zewnętrzne biblioteki: {result['third_party']}")
     print(f"Nieznane biblioteki: {result['unknown']}")
     print(f"Wymagane pakiety: {result['required_packages']}")
     
-    # Analiza kodu z bu0142u0119dem sku0142adni
-    print("\nAnaliza kodu z bu0142u0119dem sku0142adni:")
+    # Analiza kodu z błędem składni
+    print("\nAnaliza kodu z błędem składni:")
     result = analyzer.analyze_code(EXAMPLE_CODE_ERROR)
     print(f"Wynik: {result}")
 
 
 def example_dependency_manager():
-    """Przyku0142ad uu017cycia DependencyManager."""
+    """Przykład użycia DependencyManager."""
     from pybox.dependency_manager import DependencyManager
     
     dependency_manager = DependencyManager()
     
-    print("\n=== Przyku0142ad uu017cycia DependencyManager ===\n")
+    print("\n=== Przykład użycia DependencyManager ===\n")
     
-    # Sprawdzenie zainstalowanych pakietu00f3w
-    print("Sprawdzenie zainstalowanych pakietu00f3w:")
+    # Sprawdzenie zainstalowanych pakietów
+    print("Sprawdzenie zainstalowanych pakietów:")
     packages = ['os', 'sys', 'math', 'numpy', 'pandas', 'nonexistent_package']
     for package in packages:
         installed = dependency_manager.check_package_installed(package)
         print(f"Pakiet {package}: {'zainstalowany' if installed else 'niezainstalowany'}")
     
-    # Analiza zaleu017cnou015bci
-    print("\nAnaliza zaleu017cnou015bci:")
+    # Analiza zależności
+    print("\nAnaliza zależności:")
     result = dependency_manager.analyze_dependencies(EXAMPLE_CODE_NUMPY)
     print(f"Wymagane pakiety: {result['required_packages']}")
     print(f"Zainstalowane pakiety: {result['installed_packages']}")
-    print(f"Brakuju0105ce pakiety: {result['missing_packages']}")
+    print(f"Brakujące pakiety: {result['missing_packages']}")
 
 
 def example_python_sandbox():
-    """Przyku0142ad uu017cycia PythonSandbox."""
+    """Przykład użycia PythonSandbox."""
     from pybox.python_sandbox import PythonSandbox
     
     sandbox = PythonSandbox()
     
-    print("\n=== Przyku0142ad uu017cycia PythonSandbox ===\n")
+    print("\n=== Przykład użycia PythonSandbox ===\n")
     
     # Uruchomienie prostego kodu
     print("Uruchomienie prostego kodu:")
     result = sandbox.run_code(EXAMPLE_CODE_SIMPLE)
     print(f"Sukces: {result['success']}")
-    print(f"Standardowe wyju015bcie:\n{result['stdout']}")
+    print(f"Standardowe wyjście:\n{result['stdout']}")
     
-    # Uruchomienie kodu z bu0142u0119dem sku0142adni
-    print("\nUruchomienie kodu z bu0142u0119dem sku0142adni:")
+    # Uruchomienie kodu z błędem składni
+    print("\nUruchomienie kodu z błędem składni:")
     result = sandbox.run_code(EXAMPLE_CODE_ERROR)
     print(f"Sukces: {result['success']}")
-    print(f"Standardowe wyju015bcie bu0142u0119du00f3w:\n{result['stderr']}")
+    print(f"Standardowe wyjście błędów:\n{result['stderr']}")
     
-    # Uruchomienie kodu z bu0142u0119dem wykonania
-    print("\nUruchomienie kodu z bu0142u0119dem wykonania:")
+    # Uruchomienie kodu z błędem wykonania
+    print("\nUruchomienie kodu z błędem wykonania:")
     result = sandbox.run_code(EXAMPLE_CODE_RUNTIME_ERROR)
     print(f"Sukces: {result['success']}")
-    print(f"Standardowe wyju015bcie:\n{result['stdout']}")
-    print(f"Standardowe wyju015bcie bu0142u0119du00f3w:\n{result['stderr']}")
+    print(f"Standardowe wyjście:\n{result['stdout']}")
+    print(f"Standardowe wyjście błędów:\n{result['stderr']}")
 
 
 def example_docker_sandbox():
-    """Przyku0142ad uu017cycia DockerSandbox."""
+    """Przykład użycia DockerSandbox."""
     from pybox.docker_sandbox import DockerSandbox
     
-    # Sprawdu017a, czy Docker jest zainstalowany
+    # Sprawdzenie, czy Docker jest zainstalowany
     import subprocess
     try:
         result = subprocess.run(['docker', '--version'], capture_output=True, text=True)
@@ -192,36 +194,36 @@ def example_docker_sandbox():
         docker_installed = False
     
     if not docker_installed:
-        print("\n=== Przyku0142ad uu017cycia DockerSandbox ===\n")
-        print("Docker nie jest zainstalowany. Pomijanie przyku0142adu.")
+        print("\n=== Przykład użycia DockerSandbox ===\n")
+        print("Docker nie jest zainstalowany. Pomijanie przykładu.")
         return
     
     sandbox = DockerSandbox()
     
-    print("\n=== Przyku0142ad uu017cycia DockerSandbox ===\n")
+    print("\n=== Przykład użycia DockerSandbox ===\n")
     
     # Uruchomienie prostego kodu w Dockerze
     print("Uruchomienie prostego kodu w Dockerze:")
     result = sandbox.run_code(EXAMPLE_CODE_SIMPLE)
     print(f"Sukces: {result['success']}")
-    print(f"Standardowe wyju015bcie:\n{result['stdout']}")
+    print(f"Standardowe wyjście:\n{result['stdout']}")
 
 
 def example_sandbox_manager():
-    """Przyku0142ad uu017cycia SandboxManager."""
+    """Przykład użycia SandboxManager."""
     from pybox.sandbox_manager import SandboxManager
     
     # Utworzenie SandboxManager
     manager = SandboxManager(use_docker=False)
     
-    print("\n=== Przyku0142ad uu017cycia SandboxManager ===\n")
+    print("\n=== Przykład użycia SandboxManager ===\n")
     
     # Uruchomienie kodu lokalnie
     print("Uruchomienie kodu lokalnie:")
     result = manager.run_code(EXAMPLE_CODE_SIMPLE)
     print(manager.format_result(result))
     
-    # Sprawdu017a, czy Docker jest zainstalowany
+    # Sprawdzenie, czy Docker jest zainstalowany
     import subprocess
     try:
         result = subprocess.run(['docker', '--version'], capture_output=True, text=True)
@@ -240,10 +242,10 @@ def example_sandbox_manager():
 
 
 def example_utils():
-    """Przyku0142ad uu017cycia funkcji pomocniczych."""
+    """Przykład użycia funkcji pomocniczych."""
     from pybox.utils import get_system_info, format_execution_result, create_temp_file
     
-    print("\n=== Przyku0142ad uu017cycia funkcji pomocniczych ===\n")
+    print("\n=== Przykład użycia funkcji pomocniczych ===\n")
     
     # Informacje o systemie
     print("Informacje o systemie:")
@@ -269,25 +271,74 @@ def example_utils():
     formatted = format_execution_result(result)
     print(formatted)
     
-    # Usuniu0119cie tymczasowego pliku
+    # Usunięcie tymczasowego pliku
     try:
         os.unlink(file_path)
-        print(f"Usuniu0119to plik: {file_path}")
+        print(f"Usunięto plik: {file_path}")
     except Exception as e:
-        print(f"Bu0142u0105d podczas usuwania pliku: {e}")
+        print(f"Błąd podczas usuwania pliku: {e}")
 
 
 def main():
-    """Gu0142u00f3wna funkcja uruchamiaju0105ca przyku0142ady."""
-    print("=== Przyku0142ady uu017cycia pakietu sandbox ===")
-    
-    # Uruchomienie przyku0142adu00f3w
-    example_code_analyzer()
-    example_dependency_manager()
-    example_python_sandbox()
-    example_docker_sandbox()
-    example_sandbox_manager()
-    example_utils()
+    """Główna funkcja uruchamiająca przykłady z interaktywnym menu."""
+    menu_choices = [
+        "Przykład: CodeAnalyzer",
+        "Przykład: DependencyManager",
+        "Przykład: PythonSandbox",
+        "Przykład: DockerSandbox",
+        "Przykład: SandboxManager",
+        "Przykład: Utils",
+        "Uruchom kod z pliku .py lub .md",
+        "Wyjście"
+    ]
+    while True:
+        print("\n=== Przykłady użycia pakietu sandbox ===")
+        choice = questionary.select(
+            "Wybierz przykład do uruchomienia:",
+            choices=menu_choices
+        ).ask()
+        if choice == "Przykład: CodeAnalyzer":
+            example_code_analyzer()
+        elif choice == "Przykład: DependencyManager":
+            example_dependency_manager()
+        elif choice == "Przykład: PythonSandbox":
+            example_python_sandbox()
+        elif choice == "Przykład: DockerSandbox":
+            example_docker_sandbox()
+        elif choice == "Przykład: SandboxManager":
+            example_sandbox_manager()
+        elif choice == "Przykład: Utils":
+            example_utils()
+        elif choice == "Uruchom kod z pliku .py lub .md":
+            file_path = questionary.text("Podaj ścieżkę do pliku .py lub .md:").ask()
+            use_docker = questionary.confirm("Uruchomić w Dockerze?", default=False).ask()
+            if not file_path:
+                print("Nie podano ścieżki do pliku.")
+                continue
+            import os
+            ext = os.path.splitext(file_path)[1].lower()
+            if not os.path.isfile(file_path):
+                print(f"Plik nie istnieje: {file_path}")
+                continue
+            if ext == '.py':
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    code = f.read()
+                print(f"\n>>> Uruchamianie pliku {file_path}...")
+                run_code(code, use_docker=use_docker)
+            elif ext == '.md':
+                blocks = extract_python_blocks_from_md(file_path)
+                if not blocks:
+                    print("Nie znaleziono bloków kodu Python w pliku Markdown.")
+                    continue
+                print(f"Znaleziono {len(blocks)} bloków kodu Python w pliku {file_path}.")
+                for i, code in enumerate(blocks, 1):
+                    print(f"\n>>> Uruchamianie bloku #{i} z pliku {file_path}...")
+                    run_code(code, use_docker=use_docker)
+            else:
+                print("Obsługiwane są tylko pliki .py i .md")
+        elif choice == "Wyjście":
+            print("Do widzenia!")
+            break
 
 
 if __name__ == "__main__":

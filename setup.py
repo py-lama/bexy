@@ -8,6 +8,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         "docker",
+        "questionary",
     ],
     extras_require={
         'dev': [
@@ -21,7 +22,7 @@ setup(
     python_requires='>=3.6',
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
     ],
     entry_points={
