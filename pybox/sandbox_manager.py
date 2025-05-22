@@ -61,6 +61,10 @@ class SandboxManager:
             logger.info("Uruchamianie kodu lokalnie...")
             result = self.python_sandbox.run_code(code, timeout)
         
+        # Add system_info if not already present for backward compatibility
+        if 'system_info' not in result:
+            result['system_info'] = self.system_info
+        
         return result
 
     def format_result(self, result: Dict[str, Any]) -> str:
