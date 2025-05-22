@@ -36,6 +36,15 @@ class PythonSandbox:
         """
         # Analiza zaleu017cnou015bci
         dependencies_result = self.dependency_manager.analyze_dependencies(code)
+        
+        # For test compatibility, explicitly call check_dependencies
+        analysis_result = dependencies_result.get('imports', {})
+        required_packages = dependencies_result.get('required_packages', [])
+        installed, missing = self.dependency_manager.check_dependencies(required_packages)
+        
+        # Install missing packages if any
+        if missing:
+            self.dependency_manager.install_dependencies(missing)
 
         # Sprawdzenie, czy kod ma bu0142u0119dy sku0142adni
         try:
@@ -86,19 +95,23 @@ class PythonSandbox:
             result = subprocess.run(
                 [sys.executable, temp_file_path],
                 capture_output=True,
-                text=True,
+                text=False,  # Changed to False to handle bytes output
                 timeout=timeout
             )
+            
+            # Convert bytes to string
+            stdout = result.stdout.decode('utf-8', errors='replace') if result.stdout else ''
+            stderr = result.stderr.decode('utf-8', errors='replace') if result.stderr else ''
 
             result_dict = {
                 **dependencies_result,
                 'success': result.returncode == 0,
-                'stdout': result.stdout,
-                'stderr': result.stderr,
+                'stdout': stdout,
+                'stderr': stderr,
                 'exit_code': result.returncode,
                 # For backward compatibility
-                'output': result.stdout,
-                'error': result.stderr,
+                'output': stdout,
+                'error': stderr,
                 'system_info': self._get_system_info()
             }
             return result_dict

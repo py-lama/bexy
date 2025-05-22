@@ -45,7 +45,7 @@ def get_system_info() -> Dict[str, str]:
         'python_path': sys.executable,
         'architecture': platform.machine(),
         'processor': platform.processor(),
-        'platform': platform.system()  # Added for backward compatibility
+        'platform': platform.platform()  # Updated for test compatibility
     }
 
 
@@ -101,6 +101,14 @@ def format_execution_result(result: Dict[str, Any]) -> str:
     if 'error_type' in result and 'error_message' in result:
         output.append(f"\nTyp bu0142u0119du: {result['error_type']}")
         output.append(f"Komunikat bu0142u0119du: {result['error_message']}")
+    
+    # Add execution time for test compatibility
+    if 'execution_time' in result:
+        output.append(f"Execution time: {result['execution_time']} seconds")
+        
+    # Add Python version information for test compatibility
+    if 'system_info' in result and 'python_version' in result['system_info']:
+        output.append(f"Python {result['system_info']['python_version']}")
     
     return "\n".join(output)
 
