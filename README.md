@@ -69,11 +69,60 @@ make format
 # Lint code with flake8
 make lint
 
+# Docker Testing
+# Build Docker test images
+make docker-build
+
+# Run tests in Docker
+make docker-test
+
+# Start interactive Docker test environment
+make docker-interactive
+
+# Start PyBox mock service in Docker
+make docker-mock
+
+# Clean up Docker test resources
+make docker-clean
+
 # Clean up project (remove __pycache__, etc.)
 make clean
 
 # Show all available commands
 make help
+```
+
+## Docker Testing
+
+PyBox includes a Docker-based testing infrastructure that allows you to run tests in isolated containers. This ensures consistent test environments and makes it easier to test integration with other components.
+
+### Using Docker Tests
+
+```bash
+# Build the Docker test images
+make docker-build
+
+# Run all tests in Docker
+make docker-test
+
+# Start an interactive Docker test environment
+make docker-interactive
+
+# Start a PyBox mock service for integration testing
+make docker-mock
+
+# Clean up Docker test resources
+make docker-clean
+```
+
+### Integration with PyLama Ecosystem
+
+PyBox is part of the PyLama ecosystem and can be tested together with other components using the main Makefile in the PyLama project root:
+
+```bash
+# From the PyLama project root
+make docker-test-pybox      # Run PyBox tests only
+make docker-integration-test # Run integration tests across all components
 ```
 
 ## Running code from .py and .md files
