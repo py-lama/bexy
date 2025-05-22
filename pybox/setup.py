@@ -4,7 +4,7 @@ setup(
     name="pybox",
     version="0.1.0",
     description="A sandbox for safely running Python code",
-    author="PyLama Team",
+    author="Tom Sapletta",
     packages=find_packages(),
     install_requires=[
         "docker",
