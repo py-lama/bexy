@@ -183,3 +183,25 @@ class CodeAnalyzer:
             Set[str]: Zestaw nazw standardowych bibliotek.
         """
         return self.std_lib_modules.copy()
+    
+    def extract_imports(self, code: str) -> Dict[str, Any]:
+        """Extracts imports from code (alias for analyze_code for backward compatibility).
+
+        Args:
+            code: Python code to analyze.
+
+        Returns:
+            Dict[str, Any]: Analysis results containing import information.
+        """
+        return self.analyze_code(code)
+    
+    def is_standard_library(self, module_name: str) -> bool:
+        """Checks if a module is part of the standard library.
+
+        Args:
+            module_name: Name of the module to check.
+
+        Returns:
+            bool: True if the module is part of the standard library, False otherwise.
+        """
+        return self._classify_module(module_name) == 'standard_library'

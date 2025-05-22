@@ -287,6 +287,28 @@ class DependencyManager:
             pass
 
         return False
+        
+    def check_module_installed(self, module_name: str) -> bool:
+        """Checks if a module is installed (alias for check_package_installed for backward compatibility).
+
+        Args:
+            module_name: Name of the module to check.
+
+        Returns:
+            bool: True if the module is installed, False otherwise.
+        """
+        return self.check_package_installed(module_name)
+        
+    def get_installed_packages(self) -> List[str]:
+        """Gets a list of installed packages.
+
+        Returns:
+            List[str]: List of installed package names.
+        """
+        installed_packages = []
+        if pkg_resources is not None:
+            installed_packages = [pkg.key for pkg in pkg_resources.working_set]
+        return installed_packages
 
     def install_dependencies(self, packages: List[str]) -> bool:
         """Instaluje liste pakietu00f3w.

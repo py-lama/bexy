@@ -86,13 +86,18 @@ class PythonSandbox:
                 timeout=timeout
             )
 
-            return {
+            result_dict = {
                 **dependencies_result,
                 'success': result.returncode == 0,
                 'stdout': result.stdout,
                 'stderr': result.stderr,
-                'exit_code': result.returncode
+                'exit_code': result.returncode,
+                # For backward compatibility
+                'output': result.stdout,
+                'error': result.stderr,
+                'system_info': self._get_system_info()
             }
+            return result_dict
 
         except subprocess.TimeoutExpired:
             return {
@@ -101,7 +106,11 @@ class PythonSandbox:
                 'stdout': '',
                 'stderr': f"Przekroczono limit czasu wykonania ({timeout} sekund).",
                 'error_type': 'TimeoutError',
-                'error_message': f"Execution timed out after {timeout} seconds"
+                'error_message': f"Execution timed out after {timeout} seconds",
+                # For backward compatibility
+                'output': '',
+                'error': f"Execution timed out after {timeout} seconds",
+                'system_info': self._get_system_info()
             }
 
         except Exception as e:
@@ -111,7 +120,11 @@ class PythonSandbox:
                 'stdout': '',
                 'stderr': f"Bu0142u0105d podczas wykonania kodu: {str(e)}",
                 'error_type': type(e).__name__,
-                'error_message': str(e)
+                'error_message': str(e),
+                # For backward compatibility
+                'output': '',
+                'error': str(e),
+                'system_info': self._get_system_info()
             }
 
         finally:
@@ -120,3 +133,16 @@ class PythonSandbox:
                 os.unlink(temp_file_path)
             except Exception:
                 pass
+                
+    def _get_system_info(self) -> Dict[str, str]:
+        """Gets system information.
+        
+        Returns:
+            Dict[str, str]: Dictionary containing system information.
+        """
+        import platform
+        return {
+            'python_version': platform.python_version(),
+            'platform': platform.system(),
+            'os': platform.system()
+        }
