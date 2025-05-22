@@ -18,8 +18,15 @@ A sandbox for safely running Python code in isolated environments.
 pip install pybox
 
 # Or install locally in development mode
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -e .  # This is important! Always install in development mode before starting
+
+# Alternatively, use the Makefile
 make setup
 ```
+
+> **IMPORTANT**: Always run `pip install -e .` before starting the project to ensure all dependencies are properly installed and the package is available in development mode.
 
 ## Usage
 
