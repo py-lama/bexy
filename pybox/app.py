@@ -10,17 +10,17 @@ It provides a REST API for executing Python code in a sandbox environment.
 
 import argparse
 import sys
-import logging
-from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
+from http.server import HTTPServer, BaseHTTPRequestHandler
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='[%(asctime)s] [%(levelname)s] [%(name)s] - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
-)
-logger = logging.getLogger('PyBox')
+# Initialize logging with PyLogs
+from pybox.logging_config import init_logging, get_logger
+
+# Initialize logging first, before any other imports
+init_logging()
+
+# Get a logger for this module
+logger = get_logger('app')
 
 class PyBoxHandler(BaseHTTPRequestHandler):
     def do_GET(self):
