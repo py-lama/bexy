@@ -44,7 +44,8 @@ def get_system_info() -> Dict[str, str]:
         'python_implementation': platform.python_implementation(),
         'python_path': sys.executable,
         'architecture': platform.machine(),
-        'processor': platform.processor()
+        'processor': platform.processor(),
+        'platform': platform.system()  # Added for backward compatibility
     }
 
 
@@ -71,7 +72,8 @@ def format_execution_result(result: Dict[str, Any]) -> str:
         str: Sformatowany wynik wykonania kodu.
     """
     output = []
-    output.append(f"Status: {'Sukces' if result.get('success', False) else 'Bu0142u0105d'}")
+    status = 'SUCCESS' if result.get('success', False) else 'ERROR'
+    output.append(f"Status: {'Sukces' if result.get('success', False) else 'Bu0142u0105d'} ({status})")
     
     if 'required_packages' in result and result['required_packages']:
         output.append(f"Wymagane pakiety: {', '.join(result['required_packages'])}")
@@ -82,13 +84,19 @@ def format_execution_result(result: Dict[str, Any]) -> str:
     if 'missing_packages' in result and result['missing_packages']:
         output.append(f"Brakuju0105ce pakiety: {', '.join(result['missing_packages'])}")
     
-    if 'stdout' in result and result['stdout']:
+    # Handle both stdout and output for backward compatibility
+    stdout_content = result.get('stdout', '')
+    output_content = result.get('output', '')
+    if stdout_content or output_content:
         output.append("\nStandardowe wyju015bcie:")
-        output.append(result['stdout'])
+        output.append(stdout_content or output_content)
     
-    if 'stderr' in result and result['stderr']:
+    # Handle both stderr and error for backward compatibility
+    stderr_content = result.get('stderr', '')
+    error_content = result.get('error', '')
+    if stderr_content or error_content:
         output.append("\nStandardowe wyju015bcie bu0142u0119du00f3w:")
-        output.append(result['stderr'])
+        output.append(stderr_content or error_content)
     
     if 'error_type' in result and 'error_message' in result:
         output.append(f"\nTyp bu0142u0119du: {result['error_type']}")

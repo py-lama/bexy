@@ -48,7 +48,11 @@ class PythonSandbox:
                 'stdout': '',
                 'stderr': f"Bu0142u0105d sku0142adni: {str(e)}",
                 'error_type': 'SyntaxError',
-                'error_message': str(e)
+                'error_message': str(e),
+                # For backward compatibility
+                'output': '',
+                'error': str(e),
+                'system_info': self._get_system_info()
             }
 
         # Uruchomienie kodu lokalnie
