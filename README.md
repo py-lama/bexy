@@ -1,6 +1,6 @@
 # PyBox
 
-A sandbox for safely running Python code in isolated environments.
+A sandbox for safely running Python code in isolated environments. PyBox is part of the PyLama ecosystem and integrates with LogLama as the primary service for centralized logging and environment management.
 
 ## Features
 
@@ -10,6 +10,8 @@ A sandbox for safely running Python code in isolated environments.
 - Docker sandbox for running code in isolated containers
 - Interactive terminal menu for running examples (arrow keys + Enter)
 - Utility functions for system information and execution results
+- Integration with LogLama for centralized logging and environment management
+- Structured logging with component context for better debugging and monitoring
 
 ## Installation
 
