@@ -17,7 +17,7 @@ setup(
             'tox',
             'flake8',
             'black',
-        ],
+        , 'twine', 'build', 'wheel'],
     },
     python_requires='>=3.6',
     classifiers=[
