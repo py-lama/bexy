@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="pybox",
-    version="0.1.0",
+    version="0.1.3",
     description="A sandbox for safely running Python code",
     author="Tom Sapletta",
     packages=find_packages(),
