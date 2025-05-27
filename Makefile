@@ -1,4 +1,4 @@
-# Makefile for BEXY
+# Makefile for Bexy
 
 .PHONY: all setup clean test lint format run help venv docker-test docker-build docker-clean test-package update-version publish publish-test
 
@@ -15,19 +15,19 @@ venv:
 
 # Setup project
 setup: venv
-	@echo "Setting up BEXY..."
+	@echo "Setting up Bexy..."
 	@. venv/bin/activate && pip install -e .
 
 # Clean project
 clean:
-	@echo "Cleaning BEXY..."
+	@echo "Cleaning Bexy..."
 	find . -type d -name __pycache__ -exec rm -rf {} +
 	find . -type d -name *.egg-info -exec rm -rf {} +
 	find . -type d -name .pytest_cache -exec rm -rf {} +
 
 # Run tests
 test: setup
-	@echo "Testing BEXY..."
+	@echo "Testing Bexy..."
 	@. venv/bin/activate && python -m unittest discover
 
 # Lint code

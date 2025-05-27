@@ -17,7 +17,7 @@ print_header() {
 }
 
 show_help() {
-    echo -e "${YELLOW}BEXY Docker Testing Environment${NC}"
+    echo -e "${YELLOW}Bexy Docker Testing Environment${NC}"
     echo -e "\nUsage: $0 [options]\n"
     echo -e "Options:"
     echo -e "  --build\t\tBuild Docker images before starting"
@@ -105,7 +105,7 @@ fi
 
 # Start the mock service
 if [ "$MOCK_SERVICE" = true ]; then
-    print_header "Starting BEXY mock service"
+    print_header "Starting Bexy mock service"
     docker-compose -f docker-compose.test.yml up -d bexy-mock
     
     # Wait for the service to be ready
@@ -115,9 +115,9 @@ if [ "$MOCK_SERVICE" = true ]; then
     # Check if the service is running
     SERVICE_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8001/health)
     if [ "$SERVICE_STATUS" = "200" ]; then
-        echo -e "${GREEN}BEXY mock service is running${NC}"
+        echo -e "${GREEN}Bexy mock service is running${NC}"
     else
-        echo -e "${RED}Failed to start BEXY mock service (status code: $SERVICE_STATUS)${NC}"
+        echo -e "${RED}Failed to start Bexy mock service (status code: $SERVICE_STATUS)${NC}"
         exit 1
     fi
     
@@ -128,7 +128,7 @@ fi
 
 # Run tests if requested
 if [ "$RUN_TESTS" = true ]; then
-    print_header "Running BEXY tests"
+    print_header "Running Bexy tests"
     docker-compose -f docker-compose.test.yml up bexy-test
     exit 0
 fi
@@ -138,7 +138,7 @@ if [ "$INTERACTIVE" = true ] || [ "$RUN_TESTS" = false -a "$MOCK_SERVICE" = fals
     print_header "Starting interactive mode"
     echo -e "${YELLOW}Available commands:${NC}"
     echo -e "  ${GREEN}python -m pytest tests/ -v${NC} - Run all tests"
-    echo -e "  ${GREEN}python -m bexy.app --port 8001 --host 0.0.0.0${NC} - Start the BEXY service"
+    echo -e "  ${GREEN}python -m bexy.app --port 8001 --host 0.0.0.0${NC} - Start the Bexy service"
     echo -e "\n${YELLOW}Type 'exit' to exit the container${NC}\n"
     
     docker-compose -f docker-compose.test.yml run --rm bexy-test bash

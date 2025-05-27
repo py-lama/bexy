@@ -1,6 +1,6 @@
-# BEXY
+# Bexy
 
-A sandbox for safely running Python code in isolated environments. BEXY is part of the PyLama ecosystem and integrates with LogLama as the primary service for centralized logging and environment management.
+A sandbox for safely running Python code in isolated environments. Bexy is part of the PyLama ecosystem and integrates with LogLama as the primary service for centralized logging and environment management.
 
 ## Features
 
@@ -54,7 +54,7 @@ print(result)
 
 ## Using the Makefile
 
-BEXY includes a Makefile to simplify common development tasks:
+Bexy includes a Makefile to simplify common development tasks:
 
 ```bash
 # Set up the project (creates a virtual environment and installs dependencies)
@@ -88,7 +88,7 @@ make docker-test
 # Start interactive Docker test environment
 make docker-interactive
 
-# Start BEXY mock service in Docker
+# Start Bexy mock service in Docker
 make docker-mock
 
 # Clean up Docker test resources
@@ -103,7 +103,7 @@ make help
 
 ## Docker Testing
 
-BEXY includes a Docker-based testing infrastructure that allows you to run tests in isolated containers. This ensures consistent test environments and makes it easier to test integration with other components.
+Bexy includes a Docker-based testing infrastructure that allows you to run tests in isolated containers. This ensures consistent test environments and makes it easier to test integration with other components.
 
 ### Using Docker Tests
 
@@ -117,7 +117,7 @@ make docker-test
 # Start an interactive Docker test environment
 make docker-interactive
 
-# Start a BEXY mock service for integration testing
+# Start a Bexy mock service for integration testing
 make docker-mock
 
 # Clean up Docker test resources
@@ -126,17 +126,17 @@ make docker-clean
 
 ### Integration with PyLama Ecosystem
 
-BEXY is part of the PyLama ecosystem and can be tested together with other components using the main Makefile in the PyLama project root:
+Bexy is part of the PyLama ecosystem and can be tested together with other components using the main Makefile in the PyLama project root:
 
 ```bash
 # From the PyLama project root
-make docker-test-bexy      # Run BEXY tests only
+make docker-test-bexy      # Run Bexy tests only
 make docker-integration-test # Run integration tests across all components
 ```
 
 ## Running code from .py and .md files
 
-You can use BEXY to safely run code from Python scripts (`.py`) or extract and run all Python code blocks from Markdown files (`.md`). This functionality is available both as a command-line tool and in the interactive menu.
+You can use Bexy to safely run code from Python scripts (`.py`) or extract and run all Python code blocks from Markdown files (`.md`). This functionality is available both as a command-line tool and in the interactive menu.
 
 ### Usage (CLI)
 
@@ -161,7 +161,7 @@ Choose "Uruchom kod z pliku .py lub .md" and follow the prompts to run any scrip
 
 
 ## Overview
-BEXY is a sandbox system for safely running Python code from scripts or markdown, with support for dependency management and Docker isolation.
+Bexy is a sandbox system for safely running Python code from scripts or markdown, with support for dependency management and Docker isolation.
 
 ---
 
