@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 """
-PyBox Application Entry Point
+BEXY Application Entry Point
 
-This module serves as the entry point for the PyBox service.
+This module serves as the entry point for the BEXY service.
 It provides a REST API for executing Python code in a sandbox environment.
 """
 
@@ -14,7 +14,7 @@ import json
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 # Initialize logging with PyLogs
-from pybox.logging_config import init_logging, get_logger
+from bexy.logging_config import init_logging, get_logger
 
 # Initialize logging first, before any other imports
 init_logging()
@@ -22,7 +22,7 @@ init_logging()
 # Get a logger for this module
 logger = get_logger('app')
 
-class PyBoxHandler(BaseHTTPRequestHandler):
+class BEXYHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/health':
             self.send_response(200)
@@ -30,7 +30,7 @@ class PyBoxHandler(BaseHTTPRequestHandler):
             self.end_headers()
             response = {
                 'status': 'ok',
-                'message': 'PyBox service is healthy'
+                'message': 'BEXY service is healthy'
             }
             self.wfile.write(json.dumps(response).encode())
         else:
@@ -82,16 +82,16 @@ class PyBoxHandler(BaseHTTPRequestHandler):
 
 def run_server(host='127.0.0.1', port=8000):
     server_address = (host, port)
-    httpd = HTTPServer(server_address, PyBoxHandler)
-    logger.info(f'Starting PyBox server on {host}:{port}')
+    httpd = HTTPServer(server_address, BEXYHandler)
+    logger.info(f'Starting BEXY server on {host}:{port}')
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
-        logger.info('Stopping PyBox server')
+        logger.info('Stopping BEXY server')
         httpd.server_close()
 
 def main():
-    parser = argparse.ArgumentParser(description='PyBox - Python Code Execution Sandbox')
+    parser = argparse.ArgumentParser(description='BEXY - Python Code Execution Sandbox')
     parser.add_argument('--port', type=int, default=8000, help='Port to run the server on')
     parser.add_argument('--host', type=str, default='127.0.0.1', help='Host to run the server on')
     args = parser.parse_args()

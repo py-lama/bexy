@@ -10,7 +10,7 @@ import os
 import sys
 import logging
 import questionary
-from pybox.pybox_run import extract_python_blocks_from_md, run_code
+from bexy.bexy_run import extract_python_blocks_from_md, run_code
 
 # Konfiguracja loggera
 logging.basicConfig(
@@ -102,7 +102,7 @@ print(f'Plik {temp_path} został usunięty.')
 
 def example_code_analyzer():
     """Przykład użycia CodeAnalyzer."""
-    from pybox.code_analyzer import CodeAnalyzer
+    from bexy.code_analyzer import CodeAnalyzer
     
     analyzer = CodeAnalyzer()
     
@@ -132,7 +132,7 @@ def example_code_analyzer():
 
 def example_dependency_manager():
     """Przykład użycia DependencyManager."""
-    from pybox.dependency_manager import DependencyManager
+    from bexy.dependency_manager import DependencyManager
     
     dependency_manager = DependencyManager()
     
@@ -155,7 +155,7 @@ def example_dependency_manager():
 
 def example_python_sandbox():
     """Przykład użycia PythonSandbox."""
-    from pybox.python_sandbox import PythonSandbox
+    from bexy.python_sandbox import PythonSandbox
     
     sandbox = PythonSandbox()
     
@@ -183,7 +183,7 @@ def example_python_sandbox():
 
 def example_docker_sandbox():
     """Przykład użycia DockerSandbox."""
-    from pybox.docker_sandbox import DockerSandbox
+    from bexy.docker_sandbox import DockerSandbox
     
     # Sprawdzenie, czy Docker jest zainstalowany
     import subprocess
@@ -211,7 +211,7 @@ def example_docker_sandbox():
 
 def example_sandbox_manager():
     """Przykład użycia SandboxManager."""
-    from pybox.sandbox_manager import SandboxManager
+    from bexy.sandbox_manager import SandboxManager
     
     # Utworzenie SandboxManager
     manager = SandboxManager(use_docker=False)
@@ -243,7 +243,7 @@ def example_sandbox_manager():
 
 def example_utils():
     """Przykład użycia funkcji pomocniczych."""
-    from pybox.utils import get_system_info, format_execution_result, create_temp_file
+    from bexy.utils import get_system_info, format_execution_result, create_temp_file
     
     print("\n=== Przykład użycia funkcji pomocniczych ===\n")
     

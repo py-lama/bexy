@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-PyBox API - REST API for Python code execution in sandbox
+BEXY API - REST API for Python code execution in sandbox
 
 This module provides a FastAPI server for executing Python code in a sandbox environment.
 """
@@ -13,15 +13,15 @@ from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 from typing import Optional, Dict, Any, List
 
-from pybox.python_sandbox import PythonSandbox
-from pybox.dependency_manager import DependencyManager
-from pybox.docker_sandbox import DockerSandbox
+from bexy.python_sandbox import PythonSandbox
+from bexy.dependency_manager import DependencyManager
+from bexy.docker_sandbox import DockerSandbox
 
 # Create FastAPI app
 app = FastAPI(
-    title="PyBox API",
+    title="BEXY API",
     description="""
-    # PyBox API
+    # BEXY API
     
     API for executing Python code in secure sandbox environments.
     
@@ -153,7 +153,7 @@ async def analyze_code(request: CodeAnalysisRequest):
     ```
     """
     try:
-        from pybox.code_analyzer import CodeAnalyzer
+        from bexy.code_analyzer import CodeAnalyzer
         analyzer = CodeAnalyzer()
         analysis = analyzer.analyze_code(request.code)
         return analysis
@@ -173,18 +173,18 @@ async def health_check():
     {
         "status": "healthy",
         "version": "0.1.0",
-        "service": "PyBox API"
+        "service": "BEXY API"
     }
     ```
     """
     return {
         "status": "healthy",
         "version": "0.1.0",
-        "service": "PyBox API"
+        "service": "BEXY API"
     }
 
 def start_server(host="0.0.0.0", port=8000):
-    """Start the PyBox API server"""
+    """Start the BEXY API server"""
     uvicorn.run(app, host=host, port=port)
 
 if __name__ == "__main__":
