@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Tests for the PyBox package using the example files.
+Tests for the Bexy package using the example files.
 """
 
 import os
@@ -13,7 +13,7 @@ from unittest.mock import patch, MagicMock
 # Add the parent directory to sys.path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Import PyBox modules
+# Import Bexy modules
 from bexy.code_analyzer import CodeAnalyzer
 from bexy.dependency_manager import DependencyManager
 from bexy.python_sandbox import PythonSandbox
@@ -81,8 +81,8 @@ if __name__ == "__main__":
     return code
 
 
-def execute_code_with_pybox(code, example_name=None):
-    """Execute code using PyBox sandbox."""
+def execute_code_with_bexy(code, example_name=None):
+    """Execute code using Bexy sandbox."""
     # Process web server examples to avoid binding to ports during testing
     if example_name == 'web_server':
         code = add_main_for_web_server(code, example_name)
@@ -189,7 +189,7 @@ def test_example_dependency_analysis(example_name):
     "database"
 ])
 def test_example_execution(example_name, mock_subprocess):
-    """Test that the examples can be executed using PyBox."""
+    """Test that the examples can be executed using Bexy."""
     # Get the example files
     examples_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'bexy', 'examples')
     example_file = os.path.join(examples_dir, f"{example_name}.py")
@@ -208,7 +208,7 @@ def test_example_execution(example_name, mock_subprocess):
         }
         
         # Execute the code
-        result = execute_code_with_pybox(code, example_name)
+        result = execute_code_with_bexy(code, example_name)
         
         # Check that the code was executed successfully
         assert result['success'] is True
@@ -271,7 +271,7 @@ def test_all_examples_integration():
             }
             
             # Execute the code
-            result = execute_code_with_pybox(code, example_file.stem)
+            result = execute_code_with_bexy(code, example_file.stem)
             
             # Check that the code was executed successfully
             assert result['success'] is True

@@ -154,14 +154,14 @@ python -m bexy.bexy_run README.md --docker
 
 Launch the menu:
 ```bash
-pybox
+bexy
 ```
 Choose "Uruchom kod z pliku .py lub .md" and follow the prompts to run any script or markdown code blocks, locally or in Docker.
 
 
 
 ## Overview
-PyBox is a sandbox system for safely running Python code from scripts or markdown, with support for dependency management and Docker isolation.
+Bexy is a sandbox system for safely running Python code from scripts or markdown, with support for dependency management and Docker isolation.
 
 ---
 
@@ -192,7 +192,7 @@ flowchart TD
          |
          v
 +--------+----------+
-| pybox_run / menu   |
+| bexy_run / menu   |
 +--------+----------+
          |
          v
