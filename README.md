@@ -1,6 +1,6 @@
-# PyBox
+# Bexy
 
-A sandbox for safely running Python code in isolated environments. PyBox is part of the PyLama ecosystem and integrates with LogLama as the primary service for centralized logging and environment management.
+A sandbox for safely running Python code in isolated environments. Bexy is part of the PyLama ecosystem and integrates with LogLama as the primary service for centralized logging and environment management.
 
 ## Features
 
@@ -17,7 +17,7 @@ A sandbox for safely running Python code in isolated environments. PyBox is part
 
 ```bash
 # Install from PyPI
-pip install pybox
+pip install bexy
 
 # Or install locally in development mode
 python -m venv venv
@@ -33,7 +33,7 @@ make setup
 ## Usage
 
 ```python
-from pybox import PythonSandbox, DockerSandbox
+from bexy import PythonSandbox, DockerSandbox
 
 # Run code in the current Python environment
 python_sandbox = PythonSandbox()
@@ -54,7 +54,7 @@ print(result)
 
 ## Using the Makefile
 
-PyBox includes a Makefile to simplify common development tasks:
+Bexy includes a Makefile to simplify common development tasks:
 
 ```bash
 # Set up the project (creates a virtual environment and installs dependencies)

@@ -2,7 +2,7 @@ import pytest
 import platform
 import os
 from unittest.mock import patch, MagicMock
-from pybox.utils import get_system_info, format_execution_result, ensure_dependencies
+from bexy.utils import get_system_info, format_execution_result, ensure_dependencies
 
 
 def test_get_system_info():
@@ -57,8 +57,8 @@ def test_format_execution_result_failure():
     assert 'Execution time: 0.05 seconds' in formatted
 
 
-@patch('pybox.dependency_manager.DependencyManager.check_dependencies')
-@patch('pybox.dependency_manager.DependencyManager.install_dependencies')
+@patch('bexy.dependency_manager.DependencyManager.check_dependencies')
+@patch('bexy.dependency_manager.DependencyManager.install_dependencies')
 def test_ensure_dependencies_all_installed(mock_install, mock_check):
     """Test ensuring dependencies when all are already installed."""
     mock_check.return_value = (['numpy', 'pandas'], [])
@@ -70,8 +70,8 @@ def test_ensure_dependencies_all_installed(mock_install, mock_check):
     assert not mock_install.called
 
 
-@patch('pybox.dependency_manager.DependencyManager.check_dependencies')
-@patch('pybox.dependency_manager.DependencyManager.install_dependencies')
+@patch('bexy.dependency_manager.DependencyManager.check_dependencies')
+@patch('bexy.dependency_manager.DependencyManager.install_dependencies')
 def test_ensure_dependencies_some_missing(mock_install, mock_check):
     """Test ensuring dependencies when some are missing."""
     mock_check.return_value = (['numpy'], ['pandas'])
@@ -85,8 +85,8 @@ def test_ensure_dependencies_some_missing(mock_install, mock_check):
     assert ['pandas'] == mock_install.call_args[0][0]
 
 
-@patch('pybox.dependency_manager.DependencyManager.check_dependencies')
-@patch('pybox.dependency_manager.DependencyManager.install_dependencies')
+@patch('bexy.dependency_manager.DependencyManager.check_dependencies')
+@patch('bexy.dependency_manager.DependencyManager.install_dependencies')
 def test_ensure_dependencies_installation_failure(mock_install, mock_check):
     """Test ensuring dependencies when installation fails."""
     mock_check.return_value = (['numpy'], ['pandas'])

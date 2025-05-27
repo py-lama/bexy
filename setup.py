@@ -30,7 +30,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'pybox=pybox.examples:main',
+            'bexy=bexy.examples:main',
         ],
     },
 )
