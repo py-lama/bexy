@@ -2,7 +2,7 @@ import pytest
 import os
 import tempfile
 from unittest.mock import patch, MagicMock
-from pybox.python_sandbox import PythonSandbox
+from bexy.python_sandbox import PythonSandbox
 
 
 def test_python_sandbox_initialization():
@@ -61,8 +61,8 @@ def test_run_code_with_error(mock_run, mock_temp_file):
 
 @patch('tempfile.NamedTemporaryFile')
 @patch('subprocess.run')
-@patch('pybox.dependency_manager.DependencyManager.check_dependencies')
-@patch('pybox.dependency_manager.DependencyManager.install_dependencies')
+@patch('bexy.dependency_manager.DependencyManager.check_dependencies')
+@patch('bexy.dependency_manager.DependencyManager.install_dependencies')
 def test_run_code_with_dependencies(mock_install, mock_check, mock_run, mock_temp_file):
     """Test running code with dependencies."""
     # Setup mocks

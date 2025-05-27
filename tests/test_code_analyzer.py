@@ -1,5 +1,5 @@
 import pytest
-from pybox.code_analyzer import CodeAnalyzer
+from bexy.code_analyzer import CodeAnalyzer
 
 
 def test_code_analyzer_initialization():

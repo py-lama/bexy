@@ -1,7 +1,7 @@
 import pytest
 import sys
 from unittest.mock import patch, MagicMock
-from pybox.dependency_manager import DependencyManager
+from bexy.dependency_manager import DependencyManager
 
 
 def test_dependency_manager_initialization():

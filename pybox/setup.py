@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="pybox",
+    name="bexy",
     version="0.1.0",
     description="A sandbox for safely running Python code",
     author="Tom Sapletta",

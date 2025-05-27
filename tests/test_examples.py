@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Tests for the PyBox package using the example files.
+Tests for the BEXY package using the example files.
 """
 
 import os
@@ -13,15 +13,15 @@ from unittest.mock import patch, MagicMock
 # Add the parent directory to sys.path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Import PyBox modules
-from pybox.code_analyzer import CodeAnalyzer
-from pybox.dependency_manager import DependencyManager
-from pybox.python_sandbox import PythonSandbox
+# Import BEXY modules
+from bexy.code_analyzer import CodeAnalyzer
+from bexy.dependency_manager import DependencyManager
+from bexy.python_sandbox import PythonSandbox
 
 
 def get_example_files():
     """Get all example files from the examples directory."""
-    examples_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'pybox', 'examples')
+    examples_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'bexy', 'examples')
     return [f for f in Path(examples_dir).glob('*.py') if f.is_file()]
 
 
@@ -81,8 +81,8 @@ if __name__ == "__main__":
     return code
 
 
-def execute_code_with_pybox(code, example_name=None):
-    """Execute code using PyBox sandbox."""
+def execute_code_with_bexy(code, example_name=None):
+    """Execute code using BEXY sandbox."""
     # Process web server examples to avoid binding to ports during testing
     if example_name == 'web_server':
         code = add_main_for_web_server(code, example_name)
@@ -118,7 +118,7 @@ def mock_subprocess():
 def test_example_code_analysis(example_name):
     """Test that the code analyzer correctly analyzes the example code."""
     # Get the example files
-    examples_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'pybox', 'examples')
+    examples_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'bexy', 'examples')
     example_file = os.path.join(examples_dir, f"{example_name}.py")
     
     # Get the content of the example file
@@ -158,7 +158,7 @@ def test_example_code_analysis(example_name):
 def test_example_dependency_analysis(example_name):
     """Test that the dependency manager correctly analyzes the example code."""
     # Get the example files
-    examples_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'pybox', 'examples')
+    examples_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'bexy', 'examples')
     example_file = os.path.join(examples_dir, f"{example_name}.py")
     
     # Get the content of the example file
@@ -189,16 +189,16 @@ def test_example_dependency_analysis(example_name):
     "database"
 ])
 def test_example_execution(example_name, mock_subprocess):
-    """Test that the examples can be executed using PyBox."""
+    """Test that the examples can be executed using BEXY."""
     # Get the example files
-    examples_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'pybox', 'examples')
+    examples_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'bexy', 'examples')
     example_file = os.path.join(examples_dir, f"{example_name}.py")
     
     # Get the content of the example file
     code = get_example_content(Path(example_file))
     
     # Mock the run_code method to avoid actual execution
-    with patch('pybox.python_sandbox.PythonSandbox.run_code') as mock_run_code:
+    with patch('bexy.python_sandbox.PythonSandbox.run_code') as mock_run_code:
         mock_run_code.return_value = {
             'success': True,
             'stdout': f"Example output for {example_name}",
@@ -208,7 +208,7 @@ def test_example_execution(example_name, mock_subprocess):
         }
         
         # Execute the code
-        result = execute_code_with_pybox(code, example_name)
+        result = execute_code_with_bexy(code, example_name)
         
         # Check that the code was executed successfully
         assert result['success'] is True
@@ -261,7 +261,7 @@ def test_all_examples_integration():
         assert 'installed_packages' in dependency_result
         
         # Mock the execution to avoid actual execution
-        with patch('pybox.python_sandbox.PythonSandbox.run_code') as mock_run_code:
+        with patch('bexy.python_sandbox.PythonSandbox.run_code') as mock_run_code:
             mock_run_code.return_value = {
                 'success': True,
                 'stdout': f"Example output for {example_file.stem}",
@@ -271,7 +271,7 @@ def test_all_examples_integration():
             }
             
             # Execute the code
-            result = execute_code_with_pybox(code, example_file.stem)
+            result = execute_code_with_bexy(code, example_file.stem)
             
             # Check that the code was executed successfully
             assert result['success'] is True

@@ -2,8 +2,8 @@ import sys
 import os
 import argparse
 import re
-from pybox.python_sandbox import PythonSandbox
-from pybox.docker_sandbox import DockerSandbox
+from bexy.python_sandbox import PythonSandbox
+from bexy.docker_sandbox import DockerSandbox
 
 def extract_python_blocks_from_md(md_path):
     """Extract all Python code blocks from a Markdown file."""
@@ -31,7 +31,7 @@ def run_code(code, use_docker=False):
     return result
 
 def main():
-    parser = argparse.ArgumentParser(description="Run Python code from .py or .md files using PyBox sandbox.")
+    parser = argparse.ArgumentParser(description="Run Python code from .py or .md files using BEXY sandbox.")
     parser.add_argument('file', help="Path to .py or .md file")
     parser.add_argument('--docker', action='store_true', help="Run code in Docker sandbox")
     parser.add_argument('--auto', action='store_true', help="Automatically execute all Python code blocks in .md files without confirmation (default)")

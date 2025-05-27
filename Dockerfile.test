@@ -1,10 +1,10 @@
-# Test Dockerfile for PyBox
+# Test Dockerfile for BEXY
 
 FROM python:3.9-slim
 
 LABEL maintainer="Tom Sapletta <info@example.com>"
 LABEL version="1.0.0"
-LABEL description="Testing environment for PyBox component"
+LABEL description="Testing environment for BEXY component"
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \

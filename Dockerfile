@@ -24,4 +24,4 @@ RUN pip install -e .
 EXPOSE 8000
 
 # Command to run the API server
-CMD ["python", "-m", "pybox.api"]
+CMD ["python", "-m", "bexy.api"]

@@ -1,6 +1,6 @@
-# PyBox
+# BEXY
 
-A sandbox for safely running Python code in isolated environments. PyBox is part of the PyLama ecosystem and integrates with LogLama as the primary service for centralized logging and environment management.
+A sandbox for safely running Python code in isolated environments. BEXY is part of the PyLama ecosystem and integrates with LogLama as the primary service for centralized logging and environment management.
 
 ## Features
 
@@ -17,7 +17,7 @@ A sandbox for safely running Python code in isolated environments. PyBox is part
 
 ```bash
 # Install from PyPI
-pip install pybox
+pip install bexy
 
 # Or install locally in development mode
 python -m venv venv
@@ -33,7 +33,7 @@ make setup
 ## Usage
 
 ```python
-from pybox import PythonSandbox, DockerSandbox
+from bexy import PythonSandbox, DockerSandbox
 
 # Run code in the current Python environment
 python_sandbox = PythonSandbox()
@@ -54,7 +54,7 @@ print(result)
 
 ## Using the Makefile
 
-PyBox includes a Makefile to simplify common development tasks:
+BEXY includes a Makefile to simplify common development tasks:
 
 ```bash
 # Set up the project (creates a virtual environment and installs dependencies)
@@ -88,7 +88,7 @@ make docker-test
 # Start interactive Docker test environment
 make docker-interactive
 
-# Start PyBox mock service in Docker
+# Start BEXY mock service in Docker
 make docker-mock
 
 # Clean up Docker test resources
@@ -103,7 +103,7 @@ make help
 
 ## Docker Testing
 
-PyBox includes a Docker-based testing infrastructure that allows you to run tests in isolated containers. This ensures consistent test environments and makes it easier to test integration with other components.
+BEXY includes a Docker-based testing infrastructure that allows you to run tests in isolated containers. This ensures consistent test environments and makes it easier to test integration with other components.
 
 ### Using Docker Tests
 
@@ -117,7 +117,7 @@ make docker-test
 # Start an interactive Docker test environment
 make docker-interactive
 
-# Start a PyBox mock service for integration testing
+# Start a BEXY mock service for integration testing
 make docker-mock
 
 # Clean up Docker test resources
@@ -126,24 +126,24 @@ make docker-clean
 
 ### Integration with PyLama Ecosystem
 
-PyBox is part of the PyLama ecosystem and can be tested together with other components using the main Makefile in the PyLama project root:
+BEXY is part of the PyLama ecosystem and can be tested together with other components using the main Makefile in the PyLama project root:
 
 ```bash
 # From the PyLama project root
-make docker-test-pybox      # Run PyBox tests only
+make docker-test-bexy      # Run BEXY tests only
 make docker-integration-test # Run integration tests across all components
 ```
 
 ## Running code from .py and .md files
 
-You can use PyBox to safely run code from Python scripts (`.py`) or extract and run all Python code blocks from Markdown files (`.md`). This functionality is available both as a command-line tool and in the interactive menu.
+You can use BEXY to safely run code from Python scripts (`.py`) or extract and run all Python code blocks from Markdown files (`.md`). This functionality is available both as a command-line tool and in the interactive menu.
 
 ### Usage (CLI)
 
 ```bash
-python -m pybox.pybox_run script.py
-python -m pybox.pybox_run README.md
-python -m pybox.pybox_run README.md --docker
+python -m bexy.bexy_run script.py
+python -m bexy.bexy_run README.md
+python -m bexy.bexy_run README.md --docker
 ```
 
 - For `.py` files: the whole script is executed in a sandbox.
@@ -154,14 +154,14 @@ python -m pybox.pybox_run README.md --docker
 
 Launch the menu:
 ```bash
-pybox
+bexy
 ```
 Choose "Uruchom kod z pliku .py lub .md" and follow the prompts to run any script or markdown code blocks, locally or in Docker.
 
 
 
 ## Overview
-PyBox is a sandbox system for safely running Python code from scripts or markdown, with support for dependency management and Docker isolation.
+BEXY is a sandbox system for safely running Python code from scripts or markdown, with support for dependency management and Docker isolation.
 
 ---
 
@@ -192,7 +192,7 @@ flowchart TD
          |
          v
 +--------+----------+
-| pybox_run / menu   |
+| bexy_run / menu   |
 +--------+----------+
          |
          v
@@ -231,7 +231,7 @@ flowchart TD
 ```mermaid
 sequenceDiagram
     participant U as User
-    participant P as pybox_run
+    participant P as bexy_run
     participant F as FileHandler
     participant S as Sandbox
     participant O as Output
@@ -251,7 +251,7 @@ sequenceDiagram
 ---
 
 ## Key Components
-- **pybox_run**: CLI/utility for running code from files
+- **bexy_run**: CLI/utility for running code from files
 - **examples.py**: Interactive menu, now integrates file execution
 - **PythonSandbox/DockerSandbox**: Safe code execution layers
 - **DependencyManager**: Handles required packages
@@ -274,11 +274,11 @@ print("Hello from markdown!")
 ```
 ```
 
-Running `python -m pybox.pybox_run README.md` or using the interactive menu will execute the code above in a sandbox and print the results.
+Running `python -m bexy.bexy_run README.md` or using the interactive menu will execute the code above in a sandbox and print the results.
 
 ## Interactive Examples Menu
 
-PyBox provides an interactive terminal menu for running usage examples. The menu allows you to navigate using arrow keys and select examples with Enter. Powered by the [`questionary`](https://github.com/tmbo/questionary) library.
+BEXY provides an interactive terminal menu for running usage examples. The menu allows you to navigate using arrow keys and select examples with Enter. Powered by the [`questionary`](https://github.com/tmbo/questionary) library.
 
 ### Running the interactive menu
 
@@ -286,17 +286,17 @@ You can start the interactive menu via the console script or directly:
 
 ```bash
 # Using the installed entry point
-pybox
+bexy
 
 # Or directly
-python -m pybox.examples
+python -m bexy.examples
 ```
 
 Follow the on-screen menu to choose an example (e.g. CodeAnalyzer, DependencyManager, PythonSandbox, DockerSandbox, etc.).
 
 ### Requirements
 
-The interactive menu requires `questionary` (installed automatically with PyBox 0.1.1+):
+The interactive menu requires `questionary` (installed automatically with BEXY 0.1.1+):
 
 ```bash
 pip install questionary

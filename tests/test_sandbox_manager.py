@@ -1,7 +1,7 @@
 import pytest
 import os
 from unittest.mock import patch, MagicMock
-from pybox.sandbox_manager import SandboxManager
+from bexy.sandbox_manager import SandboxManager
 
 
 def test_sandbox_manager_initialization_default():
@@ -18,7 +18,7 @@ def test_sandbox_manager_initialization_with_docker():
     assert manager.docker_image == "python:3.10-slim"
 
 
-@patch('pybox.python_sandbox.PythonSandbox.run_code')
+@patch('bexy.python_sandbox.PythonSandbox.run_code')
 def test_run_code_with_python_sandbox(mock_run_code):
     """Test running code with Python sandbox."""
     mock_run_code.return_value = {
@@ -38,7 +38,7 @@ def test_run_code_with_python_sandbox(mock_run_code):
     assert 'system_info' in result
 
 
-@patch('pybox.docker_sandbox.DockerSandbox.run_code')
+@patch('bexy.docker_sandbox.DockerSandbox.run_code')
 def test_run_code_with_docker_sandbox(mock_run_code):
     """Test running code with Docker sandbox."""
     mock_run_code.return_value = {

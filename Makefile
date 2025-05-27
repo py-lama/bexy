@@ -1,4 +1,4 @@
-# Makefile for PyBox
+# Makefile for BEXY
 
 .PHONY: all setup clean test lint format run help venv docker-test docker-build docker-clean test-package update-version publish publish-test
 
@@ -15,40 +15,40 @@ venv:
 
 # Setup project
 setup: venv
-	@echo "Setting up PyBox..."
+	@echo "Setting up BEXY..."
 	@. venv/bin/activate && pip install -e .
 
 # Clean project
 clean:
-	@echo "Cleaning PyBox..."
+	@echo "Cleaning BEXY..."
 	find . -type d -name __pycache__ -exec rm -rf {} +
 	find . -type d -name *.egg-info -exec rm -rf {} +
 	find . -type d -name .pytest_cache -exec rm -rf {} +
 
 # Run tests
 test: setup
-	@echo "Testing PyBox..."
+	@echo "Testing BEXY..."
 	@. venv/bin/activate && python -m unittest discover
 
 # Lint code
 lint: setup
-	@echo "Linting PyBox..."
-	@. venv/bin/activate && flake8 pybox
+	@echo "Linting BEXY..."
+	@. venv/bin/activate && flake8 bexy
 
 # Format code
 format: setup
-	@echo "Formatting PyBox..."
-	@. venv/bin/activate && black pybox
+	@echo "Formatting BEXY..."
+	@. venv/bin/activate && black bexy
 
 # Run the API server
 run: setup
-	@echo "Running PyBox API server on default port $(PORT)..."
-	@. venv/bin/activate && python -m pybox.api --port $(PORT) --host $(HOST)
+	@echo "Running BEXY API server on default port $(PORT)..."
+	@. venv/bin/activate && python -m bexy.api --port $(PORT) --host $(HOST)
 
 # Run with custom port (for backward compatibility)
 run-port: setup
-	@echo "Running PyBox API server on port $(PORT)..."
-	@. venv/bin/activate && python -m pybox.api --port $(PORT) --host $(HOST)
+	@echo "Running BEXY API server on port $(PORT)..."
+	@. venv/bin/activate && python -m bexy.api --port $(PORT) --host $(HOST)
 
 # Docker testing targets
 docker-build:
@@ -64,7 +64,7 @@ docker-interactive: docker-build
 	@./run_docker_tests.sh --interactive
 
 docker-mock: docker-build
-	@echo "Starting PyBox mock service in Docker..."
+	@echo "Starting BEXY mock service in Docker..."
 	@./run_docker_tests.sh --mock-service
 
 docker-clean:

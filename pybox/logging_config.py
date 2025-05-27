@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 """
-Pybox Logging Configuration
+BEXY Logging Configuration
 
-This module configures logging for Pybox using the PyLogs package.
+This module configures logging for BEXY using the PyLogs package.
 It ensures that environment variables are loaded before any other libraries.
 """
 
@@ -47,7 +47,7 @@ logging.basicConfig(
 
 def init_logging():
     """
-    Initialize logging for Pybox using PyLogs.
+    Initialize logging for BEXY using PyLogs.
     
     This function should be called at the very beginning of the application
     before any other imports or configurations are done.
@@ -60,22 +60,22 @@ def init_logging():
     load_env(verbose=True)
     
     # Get logging configuration from environment variables
-    log_level = get_env('PYBOX_LOG_LEVEL', 'INFO')
-    log_dir = get_env('PYBOX_LOG_DIR', os.path.join(os.path.dirname(os.path.dirname(__file__)), 'logs'))
-    db_enabled = get_env('PYBOX_DB_LOGGING', 'true').lower() in ('true', 'yes', '1')
-    db_path = get_env('PYBOX_DB_PATH', os.path.join(log_dir, 'pybox.db'))
-    json_format = get_env('PYBOX_JSON_LOGS', 'false').lower() in ('true', 'yes', '1')
+    log_level = get_env('BEXY_LOG_LEVEL', 'INFO')
+    log_dir = get_env('BEXY_LOG_DIR', os.path.join(os.path.dirname(os.path.dirname(__file__)), 'logs'))
+    db_enabled = get_env('BEXY_DB_LOGGING', 'true').lower() in ('true', 'yes', '1')
+    db_path = get_env('BEXY_DB_PATH', os.path.join(log_dir, 'bexy.db'))
+    json_format = get_env('BEXY_JSON_LOGS', 'false').lower() in ('true', 'yes', '1')
     
     # Ensure log directory exists
     os.makedirs(log_dir, exist_ok=True)
     
     # Configure logging
     logger = configure_logging(
-        name='pybox',
+        name='bexy',
         level=log_level,
         console=True,
         file=True,
-        file_path=os.path.join(log_dir, 'pybox.log'),
+        file_path=os.path.join(log_dir, 'bexy.log'),
         database=db_enabled,
         db_path=db_path,
         json=json_format,
@@ -83,7 +83,7 @@ def init_logging():
     )
     
     # Log initialization
-    logger.info('Pybox logging initialized with PyLogs')
+    logger.info('BEXY logging initialized with PyLogs')
     return True
 
 
@@ -92,15 +92,15 @@ def get_logger(name=None):
     Get a logger instance.
     
     Args:
-        name (str, optional): Name of the logger. Defaults to 'pybox'.
+        name (str, optional): Name of the logger. Defaults to 'bexy'.
         
     Returns:
         Logger: A configured logger instance.
     """
     if not name:
-        name = 'pybox'
-    elif not name.startswith('pybox.'):
-        name = f'pybox.{name}'
+        name = 'bexy'
+    elif not name.startswith('bexy.'):
+        name = f'bexy.{name}'
     
     if LOGLAMA_AVAILABLE:
         from loglama import get_logger as loglama_get_logger

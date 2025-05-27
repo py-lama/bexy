@@ -122,7 +122,7 @@ def ensure_dependencies(import_names: List[str]) -> bool:
     Returns:
         bool: True, jeu015bli wszystkie pakiety zostu0142y zainstalowane, False w przeciwnym razie.
     """
-    from pybox.dependency_manager import DependencyManager
+    from bexy.dependency_manager import DependencyManager
     
     dependency_manager = DependencyManager()
     installed, missing = dependency_manager.check_dependencies(import_names)
