@@ -76,7 +76,7 @@ docker-clean:
 build: setup
 	@echo "Building package..."
 	@. venv/bin/activate && pip install -e . && pip install wheel twine build
-	@. venv/bin/activate && rm -rf dist/* && python setup.py sdist bdist_wheel
+	@. venv/bin/activate && rm -rf dist/* && python -m build
 
 # Update version
 update-version:

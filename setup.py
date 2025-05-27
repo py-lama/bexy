@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="pybox",
-    version="0.1.3",
+    name="bexy",
+    version="0.1.11",
     description="A sandbox for safely running Python code",
     author="Tom Sapletta",
     packages=find_packages(),
@@ -17,7 +17,10 @@ setup(
             'tox',
             'flake8',
             'black',
-        , 'twine', 'build', 'wheel'],
+            'twine',
+            'build',
+            'wheel'
+        ],
     },
     python_requires='>=3.6',
     classifiers=[
