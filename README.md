@@ -88,7 +88,7 @@ make docker-test
 # Start interactive Docker test environment
 make docker-interactive
 
-# Start PyBox mock service in Docker
+# Start Bexy mock service in Docker
 make docker-mock
 
 # Clean up Docker test resources
@@ -103,7 +103,7 @@ make help
 
 ## Docker Testing
 
-PyBox includes a Docker-based testing infrastructure that allows you to run tests in isolated containers. This ensures consistent test environments and makes it easier to test integration with other components.
+Bexy includes a Docker-based testing infrastructure that allows you to run tests in isolated containers. This ensures consistent test environments and makes it easier to test integration with other components.
 
 ### Using Docker Tests
 
@@ -117,7 +117,7 @@ make docker-test
 # Start an interactive Docker test environment
 make docker-interactive
 
-# Start a PyBox mock service for integration testing
+# Start a Bexy mock service for integration testing
 make docker-mock
 
 # Clean up Docker test resources
@@ -126,24 +126,24 @@ make docker-clean
 
 ### Integration with PyLama Ecosystem
 
-PyBox is part of the PyLama ecosystem and can be tested together with other components using the main Makefile in the PyLama project root:
+Bexy is part of the PyLama ecosystem and can be tested together with other components using the main Makefile in the PyLama project root:
 
 ```bash
 # From the PyLama project root
-make docker-test-pybox      # Run PyBox tests only
+make docker-test-bexy      # Run Bexy tests only
 make docker-integration-test # Run integration tests across all components
 ```
 
 ## Running code from .py and .md files
 
-You can use PyBox to safely run code from Python scripts (`.py`) or extract and run all Python code blocks from Markdown files (`.md`). This functionality is available both as a command-line tool and in the interactive menu.
+You can use Bexy to safely run code from Python scripts (`.py`) or extract and run all Python code blocks from Markdown files (`.md`). This functionality is available both as a command-line tool and in the interactive menu.
 
 ### Usage (CLI)
 
 ```bash
-python -m pybox.pybox_run script.py
-python -m pybox.pybox_run README.md
-python -m pybox.pybox_run README.md --docker
+python -m bexy.bexy_run script.py
+python -m bexy.bexy_run README.md
+python -m bexy.bexy_run README.md --docker
 ```
 
 - For `.py` files: the whole script is executed in a sandbox.
