@@ -231,7 +231,7 @@ flowchart TD
 ```mermaid
 sequenceDiagram
     participant U as User
-    participant P as pybox_run
+    participant P as bexy_run
     participant F as FileHandler
     participant S as Sandbox
     participant O as Output
@@ -251,7 +251,7 @@ sequenceDiagram
 ---
 
 ## Key Components
-- **pybox_run**: CLI/utility for running code from files
+- **bexy_run**: CLI/utility for running code from files
 - **examples.py**: Interactive menu, now integrates file execution
 - **PythonSandbox/DockerSandbox**: Safe code execution layers
 - **DependencyManager**: Handles required packages
@@ -274,11 +274,11 @@ print("Hello from markdown!")
 ```
 ```
 
-Running `python -m pybox.pybox_run README.md` or using the interactive menu will execute the code above in a sandbox and print the results.
+Running `python -m bexy.bexy_run README.md` or using the interactive menu will execute the code above in a sandbox and print the results.
 
 ## Interactive Examples Menu
 
-PyBox provides an interactive terminal menu for running usage examples. The menu allows you to navigate using arrow keys and select examples with Enter. Powered by the [`questionary`](https://github.com/tmbo/questionary) library.
+BEXY provides an interactive terminal menu for running usage examples. The menu allows you to navigate using arrow keys and select examples with Enter. Powered by the [`questionary`](https://github.com/tmbo/questionary) library.
 
 ### Running the interactive menu
 
@@ -286,17 +286,17 @@ You can start the interactive menu via the console script or directly:
 
 ```bash
 # Using the installed entry point
-pybox
+bexy
 
 # Or directly
-python -m pybox.examples
+python -m bexy.examples
 ```
 
 Follow the on-screen menu to choose an example (e.g. CodeAnalyzer, DependencyManager, PythonSandbox, DockerSandbox, etc.).
 
 ### Requirements
 
-The interactive menu requires `questionary` (installed automatically with PyBox 0.1.1+):
+The interactive menu requires `questionary` (installed automatically with BEXY 0.1.1+):
 
 ```bash
 pip install questionary

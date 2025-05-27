@@ -1,4 +1,4 @@
-# PyBox requirements
+# BEXY requirements
 fastapi>=0.95.0
 uvicorn>=0.22.0
 pydantic>=2.0.0

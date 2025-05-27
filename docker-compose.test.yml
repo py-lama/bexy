@@ -31,7 +31,7 @@ services:
       - HOST=0.0.0.0
       - DEBUG=True
     command: |
-      bash -c "python -m pybox.app --port 8001 --host 0.0.0.0"
+      bash -c "python -m bexy.app --port 8001 --host 0.0.0.0"
 
 volumes:
   test-reports:
