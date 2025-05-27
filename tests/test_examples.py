@@ -21,7 +21,7 @@ from bexy.python_sandbox import PythonSandbox
 
 def get_example_files():
     """Get all example files from the examples directory."""
-    examples_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'bexy/bexy/examples')
+    examples_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'bexy', 'examples')
     return [f for f in Path(examples_dir).glob('*.py') if f.is_file()]
 
 
@@ -118,7 +118,7 @@ def mock_subprocess():
 def test_example_code_analysis(example_name):
     """Test that the code analyzer correctly analyzes the example code."""
     # Get the example files
-    examples_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'bexy/bexy/examples')
+    examples_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'bexy', 'examples')
     example_file = os.path.join(examples_dir, f"{example_name}.py")
     
     # Get the content of the example file
@@ -158,7 +158,7 @@ def test_example_code_analysis(example_name):
 def test_example_dependency_analysis(example_name):
     """Test that the dependency manager correctly analyzes the example code."""
     # Get the example files
-    examples_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'bexy/bexy/examples')
+    examples_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'bexy', 'examples')
     example_file = os.path.join(examples_dir, f"{example_name}.py")
     
     # Get the content of the example file
@@ -191,7 +191,7 @@ def test_example_dependency_analysis(example_name):
 def test_example_execution(example_name, mock_subprocess):
     """Test that the examples can be executed using Bexy."""
     # Get the example files
-    examples_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'bexy/bexy/examples')
+    examples_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'bexy', 'examples')
     example_file = os.path.join(examples_dir, f"{example_name}.py")
     
     # Get the content of the example file
