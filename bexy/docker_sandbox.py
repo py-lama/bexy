@@ -88,7 +88,7 @@ class DockerSandbox:
             Dict[str, Any]: Wyniki wykonania kodu.
         """
         # Utworzenie unikalnego ID dla kontenera
-        container_id = f"pylama-sandbox-{uuid.uuid4().hex[:8]}"
+        container_id = f"devlama-sandbox-{uuid.uuid4().hex[:8]}"
 
         # Utworzenie tymczasowego katalogu na pliki
         temp_dir = tempfile.mkdtemp()
@@ -237,7 +237,7 @@ class DockerSandbox:
         """Zatrzymuje kontener Docker.
 
         Args:
-            container_id: ID kontenera do zatrzymania. Jeu015bli nie podano, zatrzymywane su0105 wszystkie kontenery pylama-sandbox.
+            container_id: ID kontenera do zatrzymania. Jeu015bli nie podano, zatrzymywane su0105 wszystkie kontenery devlama-sandbox.
 
         Returns:
             bool: True, jeu015bli kontener zostau0142 zatrzymany, False w przeciwnym razie.
@@ -252,10 +252,10 @@ class DockerSandbox:
                 )
                 return stop_result.returncode == 0
             else:
-                # Znajdu017a wszystkie kontenery pylama-sandbox
+                # Znajdu017a wszystkie kontenery devlama-sandbox
                 find_cmd = [
                     'docker', 'ps', '-a',
-                    '--filter', 'name=pylama-sandbox',
+                    '--filter', 'name=devlama-sandbox',
                     '--format', '{{.ID}}'
                 ]
                 find_result = subprocess.run(find_cmd, capture_output=True, text=True)
