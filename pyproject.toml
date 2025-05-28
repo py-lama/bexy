@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "bexy"
-version = "0.1.15"
+version = "0.1.16"
 description = "A sandbox for safely running Python code"
 authors = [ "Tom Sapletta <info@softreck.dev>",]
 license = "Apache-2.0"
