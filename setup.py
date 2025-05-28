@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="bexy",
-    version="0.1.11",
+    version="0.1.12",
     description="A sandbox for safely running Python code",
     author="Tom Sapletta",
     packages=find_packages(),
