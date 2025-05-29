@@ -1,15 +1,17 @@
 [build-system]
-requires = [ "poetry-core>=1.0.0",]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
 
-[tool.poetry]
+[project]
 name = "bexy"
-version = "0.1.23"
+version = "0.1.24"
 description = "A sandbox for safely running Python code"
-authors = ["Tom Sapletta <info@softreck.dev>"]
-license = "Apache-2.0"
 readme = "README.md"
-repository = "https://github.com/py-lama/bexy"
+requires-python = ">=3.8,<4.0"
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "Tom Sapletta", email = "info@softreck.dev"},
+]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -22,8 +24,11 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Topic :: Software Development :: Interpreters",
     "Topic :: Software Development :: Libraries :: Python Modules",
-    "Topic :: Security"
+    "Topic :: Security",
 ]
+dependencies = []
+
+[project.optional-dependencies]
 
 [project.urls]
 Homepage = "https://github.com/py-lama/bexy"
@@ -32,10 +37,7 @@ Repository = "https://github.com/py-lama/bexy"
 Changelog = "https://github.com/py-lama/bexy/blob/main/CHANGELOG.md"
 Tracker = "https://github.com/py-lama/bexy/issues"
 Download = "https://pypi.org/project/bexy/"
-[[tool.poetry.packages]]
-include = "bexy"
 
-[tool.poetry.dependencies]
-python = ">=3.8,<4.0"
-
-[tool.poetry.dev-dependencies]
+[tool.setuptools]
+packages = ["bexy"]
+include-package-data = true
