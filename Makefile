@@ -84,7 +84,7 @@ update-version:
 	@python ../scripts/update_version.py
 
 # Publish package to PyPI
-publish: build update-version
+publish: update-version build update-version
 	@echo "Publishing package to PyPI..."
 	@. venv/bin/activate && twine check dist/* && twine upload dist/*
 
